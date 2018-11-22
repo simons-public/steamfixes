@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# compiled loader library
+.so
+
+# test deployment
+deploy.sh
+
+# vscode
+.vscode

@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+""" Main entry point for steamfixes """
+
+import sys
+import subprocess
+
+def usage():
+    """ Print usage message when user runs directly """
+    print(f'Usage: {sys.argv[0]} [command]')
+
+def module_fail():
+    """ Report steamfixes missing, run game anyways """
+    red = '\u001b[31m'
+    reset = '\u001b[0m\n'
+    sys.stderr.write(red + 'Unable to load \'steamfixes\' python module' + reset)
+    sys.stderr.write(red + 'Running game without steamfixes' + reset)
+    sys.stderr.flush()
+
+    cmdline = sys.argv
+    cmdline.pop(0)
+    if cmdline:
+        subprocess.call(cmdline)
+
+def main():
+    """ Import and run steamfixes """
+
+    if len(sys.argv) <= 1:
+        usage()
+        exit(0)
+
+    try:
+        import steamfixes
+    except ImportError:
+        module_fail()
+        exit(0)
+
+    steamfixes.run()
+
+if __name__ == '__main__':
+    main()
