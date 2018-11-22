@@ -20,7 +20,7 @@ sudo python3 setup.py install
 ```
 
 ### Modify steam launch script
-`/usr/bin/steam`:
+Add `/usr/lib/steamfixes/loader.so` to LD_PRELOAD in the `/usr/bin/steam` script:
 ```diff
 - export LD_PRELOAD='/usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1 /usr/$LIB/libgpg-error.so'
 + export LD_PRELOAD=/usr/lib/steamfixes/loader.so /usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1 /usr/$LIB/libgpg-error.so
