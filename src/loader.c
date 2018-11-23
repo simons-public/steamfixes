@@ -4,7 +4,9 @@
 #include <stdlib.h>
 #include <dlfcn.h>
 
+#ifndef LOADER
 #define LOADER "/usr/bin/steamfixes"
+#endif
 
 typedef ssize_t (*execve_func_t)(const char* filename, char* const argv[], char* const envp[]);
 static execve_func_t sys_execve = NULL;
