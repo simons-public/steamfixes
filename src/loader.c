@@ -15,7 +15,7 @@ int execve(const char* filename, char* const argv[], char* const envp[]) {
     appid = secure_getenv("SteamAppId");
 
     /* checking for LOADER in the filename prevents infinite looping */
-    if (appid != NULL && strcmp(filename, LOADER) != 0)
+    if (secure_getenv("STEAM_COMPAT_DATA_PATH") == NULL && appid != NULL && strcmp(filename, LOADER) != 0)
     {
         #ifdef DEBUG
         printf("Hooked SteamAppId: %s\n", appid);
