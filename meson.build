@@ -19,3 +19,23 @@ configure_file(copy: true,
   input       : files('src/steamfixes'),
   output      : 'steamfixes',
   install_dir : get_option('bindir'))
+
+
+# Install steamfixes Python module
+pymod = import('python')
+py_installation = pymod.find_installation('python3')
+
+py_files = files([
+  'steamfixes/__init__.py',
+  'steamfixes/fix.py',
+  'steamfixes/game.py',
+  'steamfixes/logger.py',
+  'steamfixes/util.py',
+])
+py_installation.install_sources(py_files, subdir: 'steamfixes')
+
+
+py_gamefixes_files = files([
+  'steamfixes/gamefixes/200710.py'
+])
+py_installation.install_sources(py_gamefixes_files, subdir: 'steamfixes/gamefixes')
